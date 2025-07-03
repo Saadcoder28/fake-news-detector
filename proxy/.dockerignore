@@ -1,0 +1,9 @@
+# proxy/.dockerignore
+#
+# Ignore everything…
+*
+
+# …but send nginx.conf and the entire dist folder
+!nginx.conf
+!dist
+!dist/**
