@@ -1,0 +1,8 @@
+api/model/ckpts/
+api/model/fakenews_roberta/
+data/
+proxy/dist/
+web/dist/
+*.safetensors
+*.pt
+*.arrow

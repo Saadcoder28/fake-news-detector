@@ -1,0 +1,21 @@
+# --- generic junk -------------------------------------------------
+__pycache__/
+*.py[cod]
+*.DS_Store
+*.swp
+.env
+.git
+.idea
+.vscode
+
+# --- Python virtual-envs -----------------------------------------
+api/.venv/
+
+# --- ML artefacts -------------------------------------------------
+# fine-tuned checkpoints & tokenizer files
+api/model/fakenews_roberta/
+# raw datasets / arrow splits
+data/
+
+# --- anything else you don’t need inside the image ---------------
+*.ipynb

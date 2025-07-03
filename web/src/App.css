@@ -1,0 +1,115 @@
+/* ───── reset & base ───── */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+
+/* ───── nav bar ───── */
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 56px;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,.65);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  z-index: 50;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;           /* ← links on the left */
+  padding: 0 1rem;
+}
+.nav-links a {
+  margin-right: 1.3rem;
+  color: #333;
+  text-decoration: none;
+}
+.nav-links a:hover { color: #0d6efd; }
+
+/* ───── hero section ───── */
+.hero {
+  height: calc(100vh - 56px);            /* viewport minus nav bar */
+  margin-top: 56px;
+  display: grid;
+  place-items: center;                   /* centres headline block */
+  text-align: center;
+  padding: 0 1rem;
+  background: #0e0e0e;                   /* dark charcoal */
+  color: #fff;
+}
+.hero-content { max-width: 760px; }
+
+.headline {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.1;
+  font-weight: 800;
+}
+.sub {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  opacity: .92;
+  margin: 1rem 0 2.2rem;
+}
+.cta {
+  padding: .9rem 2.3rem;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 48px;
+  background: #0d6efd;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s;
+}
+.cta:hover { background: #0b5ed7; }
+
+/* ───── overlay & analyser card ───── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+}
+.card {
+  width: min(90vw, 600px);
+  background: transparent;               /* no white block */
+  padding: 2rem 2rem 2.4rem;
+  text-align: center;
+}
+.card h2 { margin: 0 0 1rem; }
+
+textarea {
+  width: 100%;
+  min-height: 140px;
+  font: inherit;
+  padding: .85rem;
+  border: 1px solid #ced4da;
+  border-radius: 12px;
+  background: #1e1e1e;
+  color: #fff;
+  resize: vertical;
+}
+.card button {
+  margin-top: 1rem;
+  padding: .6rem 1.6rem;
+  font: inherit;
+  border: none;
+  border-radius: 12px;
+  background: #0d6efd;
+  color: #fff;
+  cursor: pointer;
+}
+.card button:disabled { background: #6c757d; cursor: not-allowed; }
+.card button:not(:disabled):hover { background: #0b5ed7; }
+
+/* verdict & error */
+.verdict { margin-top: 1.4rem; font-weight: 700; font-size: 1.15rem; }
+.verdict.fake { color: #c1121f; }
+.verdict.real { color: #198754; }
+
+.error { margin-top: 1.3rem; color: #c1121f; font-weight: 600; }

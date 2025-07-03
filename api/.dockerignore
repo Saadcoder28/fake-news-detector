@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.DS_Store
+*.ipynb
+
+# local venv & model artefacts that the container should rebuild/download
+.venv/
