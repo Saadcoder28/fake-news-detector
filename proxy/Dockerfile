@@ -1,10 +1,12 @@
+# proxy/Dockerfile  (minimal, final version)
 FROM nginx:1.27-alpine
 
-# Copy the frontend build into nginx's web root
-COPY web/dist /usr/share/nginx/html
+# static site (built by Vite)
+COPY dist /usr/share/nginx/html
 
-# Replace default nginx config with your own
-COPY proxy/nginx.conf /etc/nginx/nginx.conf
+# replace default config with ours
+COPY nginx.conf /etc/nginx/nginx.conf
+RUN rm /etc/nginx/conf.d/default.conf   # avoid double server{}
 
-# Remove default config to avoid conflicts
-RUN rm /etc/nginx/conf.d/default.conf
+EXPOSE 80
+HEALTHCHECK CMD wget -qO- http://localhost/health || exit 1
