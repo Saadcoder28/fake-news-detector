@@ -1,24 +1,23 @@
+# render.yaml  ── Render Blueprint
 services:
+  # ── FastAPI (API) ───────────────────────────────────────────────
   - type: web
     name: api
     env: docker
-    plan: starter       # $7/mo, free 750h credit on new acct
-    dockerfilePath: api/Dockerfile
-    autoDeploy: yes
+    dockerfilePath: api/Dockerfile       # uses your existing Dockerfile
+    plan: starter                        # or free if it’s available
+    autoDeploy: true
     healthCheckPath: /health
-    # optional env for Torch/MPS:
     envVars:
-      - key: PORT
-        value: 8000
+      - key: PORT                        # Render expects $PORT
+        value: "8000"
 
+  # ── Nginx + React bundle (Proxy) ────────────────────────────────
   - type: web
     name: proxy
     env: docker
     dockerfilePath: proxy/Dockerfile
     plan: starter
-    autoDeploy: yes
-    healthCheckPath: /health
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    autoDeploy: true
+    healthCheckPath: /health            # nginx /health route
+
