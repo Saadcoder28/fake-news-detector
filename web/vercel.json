@@ -1,0 +1,35 @@
+{
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist",
+          "buildCommand": "npm run build"
+        }
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/predict",
+        "destination": "https://fake-news-api.fly.dev/predict"
+      },
+      {
+        "source": "/batch_predict",
+        "destination": "https://fake-news-api.fly.dev/batch_predict"
+      },
+      {
+        "source": "/stats",
+        "destination": "https://fake-news-api.fly.dev/stats"
+      },
+      {
+        "source": "/explain/:id",
+        "destination": "https://fake-news-api.fly.dev/explain/:id"
+      },
+      {
+        "source": "/health",
+        "destination": "https://fake-news-api.fly.dev/health"
+      }
+    ]
+  }
+  
