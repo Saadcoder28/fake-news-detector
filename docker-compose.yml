@@ -1,23 +1,18 @@
-version: '3.8'
+# docker-compose.yml  (minimal diff)
 
 services:
-  # -----------------------------  API  ----------------------------
   api:
     build:
       context: ./api
-      dockerfile: Dockerfile
     container_name: fake-news-api
     ports:
       - "8000:8000"
-    depends_on:
-      - proxy
     restart: unless-stopped
 
-  # -----------------------------  Nginx proxy  --------------------
   proxy:
     build:
-      context: .                    # ✅ FIXED: Now includes web/dist and proxy/
-      dockerfile: proxy/Dockerfile
+      context: ./proxy          # ← this is the only change
+      dockerfile: Dockerfile    # (same file, now inside ./proxy)
     container_name: fake-news-proxy
     ports:
       - "8080:80"
@@ -27,8 +22,3 @@ services:
       timeout: 3s
       retries: 3
     restart: unless-stopped
-
-networks:
-  default:
-    name: fake-news-net
-    driver: bridge
