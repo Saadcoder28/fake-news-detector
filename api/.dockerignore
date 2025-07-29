@@ -1,7 +1,15 @@
-__pycache__/
-*.py[cod]
-*.DS_Store
-*.ipynb
+# api/.dockerignore
 
-# local venv & model artefacts that the container should rebuild/download
-.venv/
+# ignore everything…
+**
+
+# …but allow these files/folders in
+!Dockerfile
+!requirements.txt
+!main.py
+!model/fakenews_roberta/config.json
+!model/fakenews_roberta/tokenizer.json
+!model/fakenews_roberta/vocab.json
+!model/fakenews_roberta/merges.txt
+!model/fakenews_roberta/model.safetensors
+!model/fakenews_roberta/special_tokens_map.json
