@@ -37,15 +37,13 @@ An AI-powered web app that detects whether a given news statement is **real or f
 
 ## 📦 Folder Structure
 
+```
 fake-news-detector/
-├── api/ # FastAPI backend (Fly)
-├── web/ # React frontend (Vercel)
-├── proxy/ # Optional NGINX proxy setup
-├── .github/ # GitHub Actions / CI
-
-yaml
-Copy
-Edit
+├── api/              # FastAPI backend (Fly)
+├── web/              # React frontend (Vercel)
+├── proxy/            # Optional NGINX proxy setup
+├── .github/          # GitHub Actions / CI
+```
 
 ---
 
@@ -58,10 +56,11 @@ cd api
 pip install -r requirements.txt
 uvicorn main:app --reload  # Run locally
 flyctl deploy               # Deploy to Fly.io
-💻 Frontend (React on Vercel)
-bash
-Copy
-Edit
+```
+
+### 💻 Frontend (React on Vercel)
+
+```bash
 cd web
 npm install
 npm start                  # Run locally
@@ -70,11 +69,11 @@ npm start                  # Run locally
 # - Push to GitHub
 # - Set root directory to "web" in Vercel
 # - Add vercel.json to handle API routing
-vercel.json example:
+```
 
-json
-Copy
-Edit
+**`vercel.json` example:**
+
+```json
 {
   "rewrites": [
     { "source": "/predict",        "destination": "https://fake-news-api.fly.dev/predict" },
@@ -84,27 +83,43 @@ Edit
     { "source": "/health",         "destination": "https://fake-news-api.fly.dev/health" }
   ]
 }
-🔍 API Endpoints
-Method	Endpoint	Description
-POST	/predict	Detect if input text is fake news
-POST	/batch_predict	Detect multiple statements
-GET	/stats	Return stats summary
-GET	/health	Health check for uptime monitor
-GET	/explain/:id	Optional: model explanation by ID
+```
 
-🧊 Note on Cold Start
-The backend hosted on Fly.io may experience a short delay on first use due to container cold start and model load time. Subsequent requests are fast.
+---
 
-💡 Add this to App.js to ping /health on load:
+## 🔍 API Endpoints
 
-js
-Copy
-Edit
+| Method | Endpoint            | Description                       |
+|--------|---------------------|-----------------------------------|
+| POST   | `/predict`          | Detect if input text is fake news |
+| POST   | `/batch_predict`    | Detect multiple statements         |
+| GET    | `/stats`            | Return stats summary               |
+| GET    | `/health`           | Health check for uptime monitor   |
+| GET    | `/explain/:id`      | Optional: model explanation by ID |
+
+---
+
+## 🧊 Note on Cold Start
+
+The backend hosted on Fly.io may experience a **short delay on first use** due to container cold start and model load time. Subsequent requests are fast.
+
+💡 Add this to `App.js` to ping `/health` on load:
+
+```js
 useEffect(() => {
   fetch("/health").catch(() => {});
 }, []);
-📄 License
+```
+
+---
+
+## 📄 License
+
 MIT License
 
-🙌 Acknowledgments
-Built with ❤️ by Saad Amin
+---
+
+## 🙌 Acknowledgments
+
+Built with ❤️ by **Saad Amin**  
+Powered by FastAPI, Vercel, Fly.io, OpenAI, and React.
