@@ -1,12 +1,110 @@
-# React + Vite
+# 📰 Fake News Detector
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-powered web app that detects whether a given news statement is **real or fake**, using a trained machine learning model deployed on **Fly.io**, with a sleek **React frontend** hosted on **Vercel**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Demo
 
-## Expanding the ESLint configuration
+🔗 **Try it here**: [https://fake-news-detector-ofkd.vercel.app](https://fake-news-detector-ofkd.vercel.app)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+
+- 🧠 Intelligent fake news detection using a trained ML model
+- ⚡ FastAPI backend hosted on Fly.io
+- ⚛️ React SPA frontend deployed via Vercel
+- 🔁 Smart proxy routing via `vercel.json` for API calls
+- 📊 Optionally supports stats and explainability endpoints
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React
+- Vercel (Hosting)
+- Tailwind CSS *(optional)*
+
+### Backend
+- FastAPI
+- Scikit-learn / Transformers
+- Uvicorn
+- Fly.io (Deployment)
+
+---
+
+## 📦 Folder Structure
+
+fake-news-detector/
+├── api/ # FastAPI backend (Fly)
+├── web/ # React frontend (Vercel)
+├── proxy/ # Optional NGINX proxy setup
+├── .github/ # GitHub Actions / CI
+
+yaml
+Copy
+Edit
+
+---
+
+## ⚙️ Getting Started
+
+### 🔧 Backend (API on Fly)
+
+```bash
+cd api
+pip install -r requirements.txt
+uvicorn main:app --reload  # Run locally
+flyctl deploy               # Deploy to Fly.io
+💻 Frontend (React on Vercel)
+bash
+Copy
+Edit
+cd web
+npm install
+npm start                  # Run locally
+
+# Deploy:
+# - Push to GitHub
+# - Set root directory to "web" in Vercel
+# - Add vercel.json to handle API routing
+vercel.json example:
+
+json
+Copy
+Edit
+{
+  "rewrites": [
+    { "source": "/predict",        "destination": "https://fake-news-api.fly.dev/predict" },
+    { "source": "/batch_predict",  "destination": "https://fake-news-api.fly.dev/batch_predict" },
+    { "source": "/stats",          "destination": "https://fake-news-api.fly.dev/stats" },
+    { "source": "/explain/:id",    "destination": "https://fake-news-api.fly.dev/explain/:id" },
+    { "source": "/health",         "destination": "https://fake-news-api.fly.dev/health" }
+  ]
+}
+🔍 API Endpoints
+Method	Endpoint	Description
+POST	/predict	Detect if input text is fake news
+POST	/batch_predict	Detect multiple statements
+GET	/stats	Return stats summary
+GET	/health	Health check for uptime monitor
+GET	/explain/:id	Optional: model explanation by ID
+
+🧊 Note on Cold Start
+The backend hosted on Fly.io may experience a short delay on first use due to container cold start and model load time. Subsequent requests are fast.
+
+💡 Add this to App.js to ping /health on load:
+
+js
+Copy
+Edit
+useEffect(() => {
+  fetch("/health").catch(() => {});
+}, []);
+📄 License
+MIT License
+
+🙌 Acknowledgments
+Built with ❤️ by Saad Amin
