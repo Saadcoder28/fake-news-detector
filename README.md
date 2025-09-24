@@ -116,4 +116,4 @@ MIT License
 ## 🙌 Acknowledgments
 
 Built with ❤️ by **Saad Amin**  
-Powered by FastAPI, Vercel, Fly.io, OpenAI, and React.
+Powered by FastAPI, Vercel, Fly.io, Hugging Face, and React.
