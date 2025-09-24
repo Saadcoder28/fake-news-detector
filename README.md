@@ -4,12 +4,6 @@ An AI-powered web app that detects whether a given news statement is **real or f
 
 ---
 
-## 🌐 Live Demo
-
-🔗 **Try it here**: [https://fake-news-detector-ofkd.vercel.app](https://fake-news-detector-ofkd.vercel.app)
-
----
-
 ## 🚀 Features
 
 - 🧠 Intelligent fake news detection using a trained ML model
