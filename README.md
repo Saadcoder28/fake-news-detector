@@ -1,6 +1,6 @@
 # 📰 Fake News Detector
 
-An AI-powered web app that detects whether a given news statement is **real or fake**, using a trained machine learning model deployed on **Fly.io**, with a sleek **React frontend** hosted on **Vercel**.
+An AI-powered web app that detects whether a given news statement is **real or fake**, using a trained machine learning model deployed on **Fly.io**, with a sleek **React frontend**.
 
 ---
 
